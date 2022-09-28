@@ -4,4 +4,5 @@
 2. In application startup first time one single user will be created 
    username: admin@gmail.com 
    password: 12345
+3. Application will running on port http://localhost:8080/
 
