@@ -1,0 +1,80 @@
+<div th:replace="common/header.html"></div>
+<!-- dashboard-content  -->
+<div th:replace="common/sidebar.html"></div>
+<!-- dashboard-content  -->
+
+<div id="content">
+    <!-- Begin Page Content -->
+    <div class="container-fluid p-0 pr-1">
+        <!-- Content Row -->
+        <div class="row">
+            <!-- top filter section  -->
+            <div class="col-12">
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-white border-0 pl-3 pr-3 pt-3 pb-0">
+                        <h6 class="m-0 font-weight-bold text-dark mb-3">Live Score List
+                            <div class="datatable-button-section float-right">
+                                <button id="refreshBtn" class="btn bg-default button-custom-primary-outline">Refresh<img class="ml-2" th:src="@{/img/el_refresh.png}" alt=""></button>
+                            </div>
+                        </h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="load-live-score" class="table table-bordered" width="100%" cellspacing="0">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Link</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">GUID</th>
+                                    <th scope="col">Time</th>
+                                </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="common/footer.html"></div>
+
+<script>
+
+    const table = $('#load-live-score').dataTable({
+        processing: true,
+        serverSide: true,
+//      filter: false, // this is for disable filter (search box)
+        orderMulti: false, // for disable multiple column at once
+        order: [], //Initial no order.
+        aLengthMenu: [5, 10, 15, 20, 50, 100, 200],
+        aoColumnDefs: [{
+            bSortable: false,
+            aTargets: ['nosort']
+        }],
+        dom: '<"pull-left"l><"pull-right"f>tip',
+        language: {
+            search: "",
+            searchPlaceholder: "Search"
+        },
+        ajax: {
+            type: 'post',
+            url: '/live-score/load-data',
+            contentType: "application/json",
+            data: function (d) {
+                return JSON.stringify($.extend({}, d, {}));
+            }
+        }
+    });
+
+    $(".load-live-score").on('click', function (e) {
+        table.fnDraw();
+    });
+
+    $("#refreshBtn").on('click', function (e) {
+        table.fnDraw();
+    });
+</script>

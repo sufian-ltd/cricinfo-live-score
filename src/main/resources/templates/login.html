@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cricinfo Live Scores - Login</title>
+    <link rel="icon" type="image/ico" th:href="@{/img/fav.ico}"/>
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
+
+</head>
+
+<body>
+
+<!-- Outer Row -->
+<div class="container-fluid login-section">
+    <div class="row m-0">
+        <div class="col-lg-6 d-none d-lg-block bg-login-image text-center">
+            <div class="vertical-center">
+                <img th:src="@{/img/login-icon.png}" alt="" class="login-icon">
+                <h4>Welcome!</h4>
+                <p>Sign <span>In</span></p>
+            </div>
+        </div>
+        <div class="col-lg-6 bg-login-right-image">
+            <div class="login-form-section vertical-center">
+                <div class="text-center">
+                    <h4 class="">Sign in to Cric-Info Live Score</h4>
+                </div>
+                <form th:action="@{/login}" method="post" class="login-form">
+                    <div class="form-group">
+                        <label for="exampleInputEmail">Username or Email Address</label>
+                        <input type="email" name="username" class="form-control form-control-user custom-text-input" id="exampleInputEmail" aria-describedby="emailHelp">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword">Password</label>
+                        <input type="password" name="password" class="form-control form-control-user custom-text-input" id="exampleInputPassword">
+                    </div>
+                    <div class="form-group">
+                        <div class="custom-checkbox small">
+                            <label class="custom-checkbox-section">Remember Me
+                                <input type="checkbox" checked="checked">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-default btn-user custom-primary-btn login-btn" name="login" type="submit">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.js}"></script>
+</body>
+
+</html>
