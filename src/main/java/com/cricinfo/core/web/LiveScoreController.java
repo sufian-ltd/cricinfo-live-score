@@ -65,7 +65,7 @@ public class LiveScoreController {
         tData[1] = liveScore.getLink();
         tData[2] = liveScore.getDescription();
         tData[3] = liveScore.getGuid();
-        tData[4] = DateTimeUtils.getDateString("yyyy-MM-dd HH:mm:ss",liveScore.getCreatedOn());
+        tData[4] = DateTimeUtils.getDateString("yyyy-MM-dd HH:mm:ss", liveScore.getCreatedOn());
         return tData;
     }
 }
