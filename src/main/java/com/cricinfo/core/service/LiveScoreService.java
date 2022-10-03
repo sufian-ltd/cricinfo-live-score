@@ -15,4 +15,6 @@ public interface LiveScoreService {
     List<LiveScore> getList(DataTableRequest dataTableRequest);
 
     long getTotalRow(DataTableRequest dataTableRequest);
+
+    boolean existsByTitle(String title);
 }

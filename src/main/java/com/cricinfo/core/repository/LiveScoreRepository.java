@@ -8,4 +8,6 @@ import java.util.Optional;
 public interface LiveScoreRepository extends JpaRepository<LiveScore, String> {
 
     Optional<LiveScore> findByTitle(String title);
+
+    boolean existsByTitle(String title);
 }

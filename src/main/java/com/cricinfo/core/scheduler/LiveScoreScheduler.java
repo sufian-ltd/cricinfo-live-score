@@ -1,9 +1,9 @@
 package com.cricinfo.core.scheduler;
 
-import com.cricinfo.core.service.LiveScoreService;
 import com.cricinfo.core.domain.LiveScore;
-import com.cricinfo.core.xml.model.LiveScoreXML;
+import com.cricinfo.core.service.LiveScoreService;
 import com.cricinfo.core.utils.XmlUtils;
+import com.cricinfo.core.xml.model.LiveScoreXML;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
-import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -36,8 +35,7 @@ public class LiveScoreScheduler {
 
             for (LiveScoreXML.Channel.Item item : liveScoreXML.getChannel().getItem()) {
                 String title = item.getTitle().trim().replace("*", "");
-                Optional<LiveScore> existLiveScore = liveScoreService.getByTitle(title);
-                if (!existLiveScore.isPresent()) {
+                if (!liveScoreService.existsByTitle(title)) {
                     LiveScore liveScore = new LiveScore();
                     liveScore.setTitle(title);
                     liveScore.setLink(item.getLink().trim());

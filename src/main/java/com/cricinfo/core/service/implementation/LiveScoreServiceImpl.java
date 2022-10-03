@@ -58,6 +58,11 @@ public class LiveScoreServiceImpl implements LiveScoreService {
         return result.longValue();
     }
 
+    @Override
+    public boolean existsByTitle(String title) {
+        return liveScoreRepository.existsByTitle(title);
+    }
+
     private String queryCondition(DataTableRequest dataTableRequest) {
         String[] searchColumns = {"title", "link", "description", "guid", "created_on"};
 
@@ -65,14 +70,14 @@ public class LiveScoreServiceImpl implements LiveScoreService {
 
         if (dataTableRequest.getSearch() != null && dataTableRequest.getSearch().getValue() != null && !dataTableRequest.getSearch().getValue().isEmpty()) {
             int i = 0;
-            String searchValue = dataTableRequest.getSearch().getValue();
+            String searchValue = dataTableRequest.getSearch().getValue().trim();
             for (String column : searchColumns) {
                 if (i > 0) {
                     condition += " OR ";
                 } else {
                     condition = "(";
                 }
-                condition += column + " like '%" + searchValue + "%'";
+                condition += column + " like \"%" + searchValue + "%\"";
                 i++;
                 if (i == searchColumns.length) {
                     condition += ")";
